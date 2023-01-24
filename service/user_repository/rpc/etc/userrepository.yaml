@@ -1,0 +1,11 @@
+Name: userrepository.rpc
+ListenOn: 127.0.0.1:8081
+Etcd:
+  Hosts:
+    - 127.0.0.1:2379
+  Key: userrepository.rpc
+Mysql:
+  DataSource: root:@tcp(127.0.0.1:3306)/cloud-disk?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+CacheRedis:
+  - Host: 192.168.138.171:6379
+    Pass: "123456"

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package repository;
+
+option go_package = "./repository";
+
+message RepositoryReq {
+  string repositoryId = 1;
+}
+
+message RepositoryResp {
+  string ext = 1;
+  int64 size = 2;
+  string path = 3;
+}
+
+message DeleteByIdentityReq {
+  string repositoryId = 1;
+}
+
+message DeleteByIdentityResp {
+  int64 size = 1;
+}
+
+service repository {
+  rpc getRepositoryPoolByRepositoryId(RepositoryReq) returns (RepositoryResp);
+  rpc deleteByIdentity(DeleteByIdentityReq) returns (DeleteByIdentityResp);
+}

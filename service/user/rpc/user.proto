@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "./user";
+
+message DecreaseVolumeReq {
+  string identity = 1;
+  int64 size = 2;
+}
+
+message DecreaseVolumeResp {
+}
+
+message FindVolumeReq {
+  string identity = 1;
+}
+
+message FindVolumeResp {
+  int64 nowVolume = 1;
+  int64 totalVolume = 2;
+}
+
+message AddVolumeReq {
+  string identity = 1;
+  int64 size = 2;
+}
+
+message AddVolumeResp {
+}
+
+service user {
+  rpc decreaseVolume(DecreaseVolumeReq) returns (DecreaseVolumeResp);
+  rpc findVolumeByIdentity(FindVolumeReq) returns (FindVolumeResp);
+  rpc addVolume(AddVolumeReq) returns (AddVolumeResp);
+}

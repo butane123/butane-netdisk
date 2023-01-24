@@ -1,0 +1,63 @@
+syntax = "v1"
+
+info(
+    title: ""
+    desc: ""
+    author: "butane"
+    email: "1127080666@qq.com"
+)
+
+type DetailRequest {
+    Identity string `json:"identity"`
+}
+
+type DetailResponse {
+    RepositoryIdentity string `json:"repositoryIdentity"`
+    Name string `json:"name"`
+    Ext string `json:"ext"`
+    Size int64 `json:"size"`
+    Path string `json:"path"`
+}
+
+type ShareBasicCreateRequest {
+    UserRepositoryIdentity string `json:"userRepositoryIdentity"`
+    ExpiredTime int64 `json:"expiredTime"`
+}
+
+type ShareBasicCreateResponse {
+    Identity string `json:"identity"`
+}
+
+type ShareBasicSaveRequest {
+    RepositoryIdentity string `json:"repositoryIdentity"` //分享的文件identity
+    ParentId int64 `json:"parentId"`                      //保存在该parentId目录下
+}
+
+type ShareBasicSaveResponse {
+    Identity string `json:"identity"`
+}
+
+service share-api {
+    @doc(
+        summary: "获取资源详情"
+    )
+    @handler ShareBasicDetail
+    post /share/basic/detail (DetailRequest) returns (DetailResponse)
+}
+
+@server(
+    jwt : Auth
+)
+service share-api {
+    @doc(
+        summary: "创建分享记录"
+    )
+    @handler ShareBasicCreate
+    post /share/basic/create (ShareBasicCreateRequest) returns (ShareBasicCreateResponse)
+
+    @doc(
+        summary: "资源保存"
+    )
+    @handler ShareBasicSave
+    post /share/basic/save (ShareBasicSaveRequest) returns (ShareBasicSaveResponse)
+}

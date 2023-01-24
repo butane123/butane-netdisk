@@ -1,0 +1,38 @@
+# Compiled class file
+*.class
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Intellij
+*.ipr
+*.iml
+*.iws
+.idea/
+out/
+
+# Maven
+target/
+
+# Gradle
+build
+.gradle
+
+# Log file
+*.log
+log/
+
+# out
+**/out/
+
+# others
+*.zip
+*.tar
+*.tar.gz
+*.pid
+*.orig
+
+# test file
+test/

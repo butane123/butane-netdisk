@@ -1,0 +1,15 @@
+Name: user-api
+Host: 127.0.0.1
+Port: 8889
+Mysql:
+  DataSource: root:@tcp(127.0.0.1:3306)/cloud-disk?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+Auth:
+  AccessSecret: b2cfcd59-86d4-413f-8e62-c15c7be7badf
+  AccessExpire: 33333
+Redis:
+  Host: 192.168.138.171:6379
+  Type: node
+  Pass: "123456"
+CacheRedis:
+  - Host: 192.168.138.171:6379
+    Pass: "123456"
