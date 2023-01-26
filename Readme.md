@@ -1,6 +1,5 @@
 # 基于go-zero框架的cloud-disk微服务网盘系统
 
-*感谢[GetcharZp/cloud-disk: 基于go-zero实现的网盘系统](https://github.com/GetcharZp/cloud-disk)作者的贡献，本项目的业务逻辑思路基本来源于该项目。*
 
 ## 项目基本介绍和技术使用情况
 > 这是一个轻量级云盘微服务系统，基于go-zero实现，官网：[go-zero帮助文档](https://go-zero.dev/cn/docs/introduction)
@@ -150,6 +149,8 @@ cloud-disk:.
 * Linux环境，直接运行四个服务中的共7个yaml文件即可。（Windows环境也可以通过该方式运行项目）
 
 ## 最后
+*感谢[GetcharZp/cloud-disk: 基于go-zero实现的网盘系统](https://github.com/GetcharZp/cloud-disk)作者的贡献。*
+
 本项目是作者初学golang，用来练手的项目。在构造并完善该项目的过程中，还是学习到了很多内容的。
 对于该项目，很明显不仅是在代码方面，而且业务逻辑方面也还是有许多问题的，包括但不限于：
 
