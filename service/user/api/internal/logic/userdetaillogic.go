@@ -1,11 +1,10 @@
 package logic
 
 import (
+	"cloud-disk/common/errorx"
 	"cloud-disk/service/user/api/internal/svc"
 	"cloud-disk/service/user/api/internal/types"
 	"context"
-	"errors"
-
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -26,7 +25,7 @@ func NewUserDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserDe
 func (l *UserDetailLogic) UserDetail(req *types.DetailRequest) (resp *types.DetailResponse, err error) {
 	userInfo, err := l.svcCtx.UserBasicModel.FindByIdentity(l.ctx, req.Identity)
 	if err != nil {
-		return nil, errors.New("Identity输入有误！")
+		return nil, errorx.NewDefaultError("Identity输入有误！")
 	}
 	return &types.DetailResponse{
 		Name:  userInfo.Name.String,

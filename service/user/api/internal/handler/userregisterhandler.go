@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"cloud-disk/common/response"
 	"net/http"
 
 	"cloud-disk/service/user/api/internal/logic"
@@ -19,10 +20,6 @@ func UserRegisterHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 
 		l := logic.NewUserRegisterLogic(r.Context(), svcCtx)
 		resp, err := l.UserRegister(&req)
-		if err != nil {
-			httpx.ErrorCtx(r.Context(), w, err)
-		} else {
-			httpx.OkJsonCtx(r.Context(), w, resp)
-		}
+		response.Response(w, resp, err)
 	}
 }

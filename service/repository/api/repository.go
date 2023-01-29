@@ -1,8 +1,13 @@
 package main
 
 import (
+	"cloud-disk/common/errorx"
+	"context"
 	"flag"
 	"fmt"
+	"net/http"
+
+	"github.com/zeromicro/go-zero/rest/httpx"
 
 	"cloud-disk/service/repository/api/internal/config"
 	"cloud-disk/service/repository/api/internal/handler"
@@ -26,6 +31,14 @@ func main() {
 	ctx := svc.NewServiceContext(c)
 	handler.RegisterHandlers(server, ctx)
 
+	httpx.SetErrorHandlerCtx(func(ctx context.Context, err error) (int, interface{}) {
+		switch e := err.(type) {
+		case *errorx.CodeError:
+			return http.StatusOK, e.Data()
+		default:
+			return http.StatusInternalServerError, nil
+		}
+	})
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
 	server.Start()
 }

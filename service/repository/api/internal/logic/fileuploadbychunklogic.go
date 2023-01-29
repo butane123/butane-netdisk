@@ -2,6 +2,7 @@ package logic
 
 import (
 	"bytes"
+	"cloud-disk/common/errorx"
 	"cloud-disk/common/utils"
 	"cloud-disk/service/repository/model"
 	"cloud-disk/service/user/rpc/user"
@@ -9,7 +10,6 @@ import (
 	"crypto/md5"
 	"database/sql"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"math"
 	"mime/multipart"
@@ -50,7 +50,7 @@ func (l *FileUploadByChunkLogic) FileUploadByChunk(req *types.FileUploadByChunkR
 		return nil, err
 	}
 	if volumeInfo.NowVolume+fileHeader.Size > volumeInfo.TotalVolume {
-		return nil, errors.New("文件过大！")
+		return nil, errorx.NewDefaultError("文件过大！")
 	}
 	_, err = l.svcCtx.UserRpc.AddVolume(l.ctx, &user.AddVolumeReq{
 		Identity: userIdentity,
@@ -96,7 +96,7 @@ func (l *FileUploadByChunkLogic) FileUploadByChunk(req *types.FileUploadByChunkR
 		Path:     sql.NullString{String: filePath, Valid: true},
 	})
 	if err != nil {
-		return nil, errors.New("上传失败！")
+		return nil, errorx.NewDefaultError("上传失败！")
 	}
 	return &types.FileUploadByChunkResponse{Identity: newIdentity}, err
 }

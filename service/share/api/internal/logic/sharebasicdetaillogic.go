@@ -1,13 +1,12 @@
 package logic
 
 import (
+	"cloud-disk/common/errorx"
 	"cloud-disk/service/repository/rpc/repository"
-	"cloud-disk/service/user_repository/rpc/userRepository"
-	"context"
-	"errors"
-
 	"cloud-disk/service/share/api/internal/svc"
 	"cloud-disk/service/share/api/internal/types"
+	"cloud-disk/service/user_repository/rpc/userRepository"
+	"context"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -30,20 +29,20 @@ func (l *ShareBasicDetailLogic) ShareBasicDetail(req *types.DetailRequest) (resp
 	//1 增加点击数
 	shareBasicInfo, err := l.svcCtx.ShareBasicModel.AddOneClick(l.ctx, req.Identity)
 	if err != nil {
-		return nil, errors.New("增加点击数失败！")
+		return nil, errorx.NewDefaultError("增加点击数失败！")
 	}
 	//2 连表查询，通过连repostitoryid和返回user库name、repositoryPool库3个值
 	userRepositoryName, err := l.svcCtx.UserRepositoryRpc.GetUserRepositoryNameByRepositoryId(l.ctx, &userRepository.RepositoryIdReq{
 		RepositoryId: shareBasicInfo.RepositoryIdentity.String,
 	})
 	if err != nil {
-		return nil, errors.New("无法获得用户储存库的信息！")
+		return nil, errorx.NewDefaultError("无法获得用户储存库的信息！")
 	}
 	RepositoryPool, err := l.svcCtx.RepositoryRpc.GetRepositoryPoolByRepositoryId(l.ctx, &repository.RepositoryReq{
 		RepositoryId: shareBasicInfo.RepositoryIdentity.String,
 	})
 	if err != nil {
-		return nil, errors.New("无法获得储存池的信息！")
+		return nil, errorx.NewDefaultError("无法获得储存池的信息！")
 	}
 	return &types.DetailResponse{
 		RepositoryIdentity: shareBasicInfo.RepositoryIdentity.String,

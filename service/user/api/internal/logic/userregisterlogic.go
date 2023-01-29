@@ -1,11 +1,11 @@
 package logic
 
 import (
+	"cloud-disk/common/errorx"
 	"cloud-disk/common/utils"
 	"cloud-disk/service/user/model"
 	"context"
 	"database/sql"
-	"errors"
 
 	"github.com/zeromicro/go-zero/core/stores/sqlc"
 
@@ -33,16 +33,16 @@ func (l *UserRegisterLogic) UserRegister(req *types.RegisterRequest) (resp *type
 	//1 验证输入的验证码是否正确
 	verificationCode, err := l.svcCtx.RedisClient.Get(req.Email)
 	if err != nil || verificationCode == "" {
-		return nil, errors.New("无发送验证码或验证码已到期！")
+		return nil, errorx.NewDefaultError("无发送验证码或验证码已到期！")
 	}
 	if verificationCode != req.Code {
-		return nil, errors.New("输入的验证码不一致！")
+		return nil, errorx.NewDefaultError("输入的验证码不一致！")
 	}
 	//2 检查用户名是否重复
 	_, err = l.svcCtx.UserBasicModel.FindByName(l.ctx, req.Name)
 	switch err {
 	case nil:
-		return nil, errors.New("用户名重复，请重试！")
+		return nil, errorx.NewDefaultError("用户名重复，请重试！")
 	case sqlc.ErrNotFound:
 		break
 	default:

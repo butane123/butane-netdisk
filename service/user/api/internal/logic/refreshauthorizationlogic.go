@@ -1,10 +1,10 @@
 package logic
 
 import (
+	"cloud-disk/common/errorx"
 	"cloud-disk/common/utils"
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"time"
 
@@ -41,7 +41,7 @@ func (l *RefreshAuthorizationLogic) RefreshAuthorization(req *types.RefreshAuthR
 	}
 	//判断是否token有效
 	if !judgeValid.Valid {
-		return nil, errors.New("Token已失效！")
+		return nil, errorx.NewDefaultError("Token已失效！")
 	}
 	//利用过期token的其他值，生成新token等信息
 	nowTime := time.Now().Unix()

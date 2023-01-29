@@ -1,9 +1,8 @@
 package logic
 
 import (
+	"cloud-disk/common/errorx"
 	"context"
-
-	"github.com/pkg/errors"
 
 	"cloud-disk/service/user_repository/api/internal/svc"
 	"cloud-disk/service/user_repository/api/internal/types"
@@ -29,11 +28,11 @@ func (l *UserFolderListLogic) UserFolderList(req *types.UserFolderListRequest) (
 	//根据文件夹identity，获取id，然后作为父目录id去搜目录下的数据
 	userRepositoryInfo, err := l.svcCtx.UserRepositoryModel.FindByIdentity(l.ctx, req.Identity)
 	if err != nil {
-		return nil, errors.New("文件夹identity有误！")
+		return nil, errorx.NewDefaultError("文件夹identity有误！")
 	}
 	allUserRepository, err := l.svcCtx.UserRepositoryModel.FindAllFolderByParentId(l.ctx, userRepositoryInfo.Id, userRepositoryInfo.UserIdentity.String)
 	if err != nil {
-		return nil, errors.New("该文件夹下搜索文件夹失败！")
+		return nil, errorx.NewDefaultError("该文件夹下搜索文件夹失败！")
 	}
 	newList := make([]*types.UserFolder, 0)
 	for _, userRepository := range allUserRepository {

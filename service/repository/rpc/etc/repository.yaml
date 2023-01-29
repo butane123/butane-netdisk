@@ -7,5 +7,5 @@ Etcd:
 Mysql:
   DataSource: root:@tcp(127.0.0.1:3306)/cloud-disk?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
 CacheRedis:
-  - Host: 192.168.138.171:6379
+  - Host: 172.17.76.149:6379
     Pass: "123456"

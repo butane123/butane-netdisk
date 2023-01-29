@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"cloud-disk/common/response"
 	"net/http"
 
 	"cloud-disk/service/repository/api/internal/logic"
@@ -25,10 +26,6 @@ func FileUploadHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 		}
 		l := logic.NewFileUploadLogic(r.Context(), svcCtx)
 		resp, err := l.FileUpload(&req, file, fileHeader)
-		if err != nil {
-			httpx.ErrorCtx(r.Context(), w, err)
-		} else {
-			httpx.OkJsonCtx(r.Context(), w, resp)
-		}
+		response.Response(w, resp, err)
 	}
 }

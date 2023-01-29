@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"cloud-disk/common/response"
 	"net/http"
 
 	"cloud-disk/service/user_repository/api/internal/logic"
@@ -19,10 +20,6 @@ func UserFileMoveHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 
 		l := logic.NewUserFileMoveLogic(r.Context(), svcCtx)
 		resp, err := l.UserFileMove(&req)
-		if err != nil {
-			httpx.ErrorCtx(r.Context(), w, err)
-		} else {
-			httpx.OkJsonCtx(r.Context(), w, resp)
-		}
+		response.Response(w, resp, err)
 	}
 }

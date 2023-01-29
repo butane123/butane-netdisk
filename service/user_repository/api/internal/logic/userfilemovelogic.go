@@ -1,10 +1,10 @@
 package logic
 
 import (
+	"cloud-disk/common/errorx"
 	"context"
 	"database/sql"
 	"encoding/json"
-	"errors"
 	"fmt"
 
 	"cloud-disk/service/user_repository/api/internal/svc"
@@ -31,7 +31,7 @@ func (l *UserFileMoveLogic) UserFileMove(req *types.UserFileMoveRequest) (resp *
 	//检测该文件是否存在
 	userFileInfo, err := l.svcCtx.UserRepositoryModel.FindByIdentity(l.ctx, req.Identity)
 	if err != nil {
-		return nil, errors.New("原文件不存在！")
+		return nil, errorx.NewDefaultError("原文件不存在！")
 	}
 	//检测新目录是否已存在该文件
 	count, err := l.svcCtx.UserRepositoryModel.CountByIdentityAndParentId(l.ctx, req.Identity, json.Number(fmt.Sprintf("%v", l.ctx.Value("userIdentity"))).String(), req.ParentId)
@@ -39,7 +39,7 @@ func (l *UserFileMoveLogic) UserFileMove(req *types.UserFileMoveRequest) (resp *
 		return nil, err
 	}
 	if count > 0 {
-		return nil, errors.New("已存在相同名称的文件！")
+		return nil, errorx.NewDefaultError("已存在相同名称的文件！")
 	}
 	//修改
 	userFileInfo.ParentId = sql.NullInt64{

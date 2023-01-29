@@ -1,12 +1,12 @@
 package logic
 
 import (
+	"cloud-disk/common/errorx"
 	"cloud-disk/common/utils"
 	"cloud-disk/service/repository/rpc/repository"
 	"cloud-disk/service/user_repository/api/internal/svc"
 	"cloud-disk/service/user_repository/api/internal/types"
 	"context"
-	"errors"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -39,11 +39,11 @@ func (l *UserFileListLogic) UserFileList(req *types.UserFileListRequest) (resp *
 	//根据文件夹identity，获取id，然后作为父目录id去搜目录下的数据
 	userRepositoryInfo, err := l.svcCtx.UserRepositoryModel.FindByIdentity(l.ctx, req.Identity)
 	if err != nil {
-		return nil, errors.New("文件夹identity有误！")
+		return nil, errorx.NewDefaultError("文件夹identity有误！")
 	}
 	allUserRepository, err := l.svcCtx.UserRepositoryModel.FindAllInPage(l.ctx, userRepositoryInfo.Id, userRepositoryInfo.UserIdentity.String, startIndex, pageSize)
 	if err != nil {
-		return nil, errors.New("该文件夹下搜索文件失败！")
+		return nil, errorx.NewDefaultError("该文件夹下搜索文件失败！")
 	}
 	newList := make([]*types.UserFile, 0)
 	for _, userRepository := range allUserRepository {

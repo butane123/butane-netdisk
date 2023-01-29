@@ -1,12 +1,12 @@
 package logic
 
 import (
+	"cloud-disk/common/errorx"
 	"cloud-disk/common/utils"
 	"cloud-disk/service/user_repository/model"
 	"context"
 	"database/sql"
 	"encoding/json"
-	"errors"
 	"fmt"
 
 	"cloud-disk/service/user_repository/api/internal/svc"
@@ -33,10 +33,10 @@ func (l *UserFolderCreateLogic) UserFolderCreate(req *types.UserFolderCreateRequ
 	//验证文件夹名字不存在：
 	existCount, err := l.svcCtx.UserRepositoryModel.CountByParentIdAndName(l.ctx, req.ParentId, json.Number(fmt.Sprintf("%v", l.ctx.Value("userIdentity"))).String(), req.Name)
 	if err != nil {
-		return nil, errors.New("验证文件夹名字不存在失败！")
+		return nil, errorx.NewDefaultError("验证文件夹名字不存在失败！")
 	}
 	if existCount > 0 {
-		return nil, errors.New("已存在相同名称的文件夹！")
+		return nil, errorx.NewDefaultError("已存在相同名称的文件夹！")
 	}
 	newIdentity := utils.GenerateUUID()
 	_, err = l.svcCtx.UserRepositoryModel.Insert(l.ctx, &model.UserRepository{

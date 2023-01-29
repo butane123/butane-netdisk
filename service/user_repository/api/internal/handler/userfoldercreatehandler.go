@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"cloud-disk/common/response"
 	"net/http"
 
 	"cloud-disk/service/user_repository/api/internal/logic"
@@ -19,10 +20,6 @@ func UserFolderCreateHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 
 		l := logic.NewUserFolderCreateLogic(r.Context(), svcCtx)
 		resp, err := l.UserFolderCreate(&req)
-		if err != nil {
-			httpx.ErrorCtx(r.Context(), w, err)
-		} else {
-			httpx.OkJsonCtx(r.Context(), w, resp)
-		}
+		response.Response(w, resp, err)
 	}
 }

@@ -1,9 +1,9 @@
 package logic
 
 import (
+	"cloud-disk/common/errorx"
 	"cloud-disk/common/utils"
 	"context"
-	"errors"
 	"strings"
 	"time"
 
@@ -31,11 +31,11 @@ func (l *UserLoginLogic) UserLogin(req *types.LoginRequest) (resp *types.LoginRe
 	// 1、从数据库中查询当前用户
 	name, password := req.Name, req.Password
 	if len(strings.TrimSpace(name)) == 0 || len(strings.TrimSpace(password)) == 0 {
-		return nil, errors.New("用户名或密码不能为空！")
+		return nil, errorx.NewDefaultError("用户名或密码不能为空！")
 	}
 	userInfo, err := l.svcCtx.UserBasicModel.JudgeUserExist(l.ctx, name, password)
 	if err != nil {
-		return nil, errors.New("无此用户或用户名与密码不匹配！")
+		return nil, errorx.NewDefaultError("无此用户或用户名与密码不匹配！")
 	}
 	// 2、生成token
 	now := time.Now().Unix()
