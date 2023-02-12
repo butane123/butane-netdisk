@@ -35,4 +35,11 @@ log/
 *.orig
 
 # test file
+code/test/
+
+# test file
 test/
+**/test/
+
+DBdata/
+dockerEnv/

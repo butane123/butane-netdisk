@@ -1,0 +1,129 @@
+syntax = "v1"
+
+info(
+	title: ""
+	desc: ""
+	author: "butane"
+	email: "1127080666@qq.com"
+)
+
+type UserRepositorySaveRequest {
+	ParentId     int64  `json:"parentId"`
+	RepositoryId int64  `json:"repositoryId"`
+	Name         string `json:"name"`
+}
+
+type UserRepositorySaveResponse {
+}
+
+type UserFileListRequest {
+	Id   int64 `json:"id"`            //查询的文件夹id
+	Page int64 `json:"page,optional"` //查询的第几页
+	Size int64 `json:"size,optional"` //每页页数
+}
+
+type UserFileListResponse {
+	List  []*UserFile `json:"list"`
+	Count int64       `json:"count"`
+}
+
+type UserFile {
+	Id           int64  `json:"id"`
+	RepositoryId int64  `json:"repositoryId"`
+	Name         string `json:"name"`
+	Ext          string `json:"ext"`
+	Path         string `json:"path"`
+	Size         int64  `json:"size"`
+}
+
+type UserFolderListRequest {
+	Id int64 `json:"id"`
+}
+
+type UserFolderListResponse {
+	List []*UserFolder `json:"list"`
+}
+
+type UserFolder {
+	Id   int64  `json:"id"`
+	Name string `json:"name"`
+}
+
+type UserFileNameUpdateRequest {
+	Id   int64  `json:"id"`
+	Name string `json:"name"`
+}
+
+type UserFileNameUpdateResponse {
+}
+
+type UserFolderCreateRequest {
+	ParentId int64  `json:"parentId"`
+	Name     string `json:"name"`
+}
+
+type UserFolderCreateResponse {
+	Id int64 `json:"id"`
+}
+
+type UserFileDeleteRequest {
+	Id int64 `json:"id"`
+}
+
+type UserFileDeleteResponse {
+}
+
+type UserFileMoveRequest {
+	Id       int64 `json:"id"`
+	ParentId int64 `json:"parentId"`
+}
+
+type UserFileMoveResponse {
+}
+
+@server(
+	jwt : Auth
+)
+service user_repository-api {
+	@doc(
+		summary: "用户文件的关联存储"
+	)
+	@handler UserRepositorySave
+	post /user/repository/save (UserRepositorySaveRequest) returns (UserRepositorySaveResponse)
+
+	@doc(
+		summary: "用户文件列表"
+	)
+	@handler UserFileList
+	post /user/file/list (UserFileListRequest) returns (UserFileListResponse)
+
+	@doc(
+		summary: "用户文件夹列表"
+	)
+	@handler UserFolderList
+	post /user/folder/list (UserFolderListRequest) returns (UserFolderListResponse)
+
+	@doc(
+		summary: "用户文件名称修改"
+	)
+	@handler UserFileNameUpdate
+	post /user/file/name/update (UserFileNameUpdateRequest) returns (UserFileNameUpdateResponse)
+
+	@doc(
+		summary: "用户文件夹创建"
+	)
+	@handler UserFolderCreate
+	post /user/folder/create (UserFolderCreateRequest) returns (UserFolderCreateResponse)
+
+	@doc(
+		summary: "用户文件删除"
+	)
+	@handler UserFileDelete
+	post /user/file/delete (UserFileDeleteRequest) returns (UserFileDeleteResponse)
+
+	@doc(
+		summary: "用户文件移动"
+	)
+	@handler UserFileMove
+	post /user/file/move (UserFileMoveRequest) returns (UserFileMoveResponse)
+}

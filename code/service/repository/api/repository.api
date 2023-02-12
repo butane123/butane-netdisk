@@ -1,0 +1,43 @@
+syntax = "v1"
+
+info(
+	title: ""
+	desc: ""
+	author: "butane"
+	email: "1127080666@qq.com"
+)
+
+type FileUploadRequest {
+	//传递form值
+	//file file
+}
+
+type FileUploadResponse {
+	Id int64 `json:"id"`
+}
+
+type FileUploadByChunkRequest {
+	//传递form值
+	//file file
+}
+
+type FileUploadByChunkResponse {
+	Id int64 `json:"id"`
+}
+
+@server(
+	jwt: Auth
+)
+service repository-api {
+	@doc(
+		summary: "文件上传"
+	)
+	@handler FileUpload
+	post /file/upload (FileUploadRequest) returns (FileUploadResponse)
+	
+	@doc(
+		summary: "文件分片上传"
+	)
+	@handler FileUploadByChunk
+	post /file/chunk/upload (FileUploadByChunkRequest) returns (FileUploadByChunkResponse)
+}

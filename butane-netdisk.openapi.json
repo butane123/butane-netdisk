@@ -1,0 +1,1111 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "butane-netdisk",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "用户"
+    },
+    {
+      "name": "分享"
+    },
+    {
+      "name": "中心存储池"
+    },
+    {
+      "name": "个人存储池"
+    }
+  ],
+  "paths": {
+    "/user/login": {
+      "post": {
+        "summary": "用户登陆",
+        "x-apifox-folder": "用户",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "用户"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "password"
+                ],
+                "x-apifox-orders": [
+                  "name",
+                  "password"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": "{\r\n    \"name\": \"xiaoming\"\r\n    \"password\": \"123456\"\r\n}"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-58670017-run"
+      }
+    },
+    "/user/detail": {
+      "post": {
+        "summary": "用户详情",
+        "x-apifox-folder": "用户",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "用户"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": {
+                "identity": "123456"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-58682737-run"
+      }
+    },
+    "/code/send": {
+      "post": {
+        "summary": "验证码发送",
+        "x-apifox-folder": "用户",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "用户"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email"
+                ],
+                "x-apifox-ignore-properties": [],
+                "x-apifox-orders": [
+                  "email"
+                ]
+              },
+              "example": {
+                "email": "1127080666@qq.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-58751154-run"
+      }
+    },
+    "/user/register": {
+      "post": {
+        "summary": "用户注册",
+        "x-apifox-folder": "用户",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "用户"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "password",
+                  "email",
+                  "code"
+                ],
+                "x-apifox-orders": [
+                  "name",
+                  "password",
+                  "email",
+                  "code"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": "{\r\n    \"name\": \"xiaowang\"\r\n    \"password\": \"123456\"\r\n    \"email\": \"1127080666@qq.com\"\r\n    \"code\": \"ewew\"\r\n}"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-58783355-run"
+      }
+    },
+    "/share/basic/detail": {
+      "post": {
+        "summary": "获取资源详情",
+        "x-apifox-folder": "分享",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "分享"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzYyNDE3MDMsImlhdCI6MTY3NjIwODM3MCwidXNlcklkIjoyNjM4MTc5MzY2NjAwNzA4fQ.IbnNBrO8fnPhcmMx8PEzaojkScFYlrhr24SA2W53wgg",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "x-apifox-orders": [
+                  "id"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "identity": "123456share"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-58898645-run"
+      }
+    },
+    "/file/upload": {
+      "post": {
+        "summary": "文件上传",
+        "x-apifox-folder": "中心存储池",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "中心存储池"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQzMDQyMTEsImlhdCI6MTY3NDI3MDg3OCwidXNlcklkZW50aXR5IjoiMTIzNDU2In0.3VrAupM_eYleOzSvbjvl45d66cyOmOn5jC2-03osoeQ",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "example": "file://E:\\idea_project\\goProject\\cloud-disk\\test\\img\\headPhoto.jpg",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-59050746-run"
+      }
+    },
+    "/user/repository/save": {
+      "post": {
+        "summary": "用户文件的关联存储",
+        "x-apifox-folder": "个人存储池",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "个人存储池"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQzMTM2NDQsImlhdCI6MTY3NDI4MDMxMSwidXNlcklkZW50aXR5IjoiMTIzNDU2In0.dcLtE5ozCxz9UTPOsBT-EUqDT71KrpsidBH6cm8YAzU",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "parentId": {
+                    "type": "integer"
+                  },
+                  "repositoryId": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "parentId",
+                  "repositoryId",
+                  "name"
+                ],
+                "x-apifox-orders": [
+                  "parentId",
+                  "repositoryId",
+                  "name"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "parentId": 1,
+                "repositoryIdentity": "c47c07b4-a8f7-4c58-b0ed-068154d9d07f",
+                "name": "userFile1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": "404 page not found\n"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-59050784-run"
+      }
+    },
+    "/user/file/list": {
+      "post": {
+        "summary": "用户文件列表",
+        "x-apifox-folder": "个人存储池",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "个人存储池"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQzMTg2ODYsImlhdCI6MTY3NDI4NTM1MywidXNlcklkZW50aXR5IjoiMTIzNDU2In0.0G12bH_8Jo3ukFdpHcm8RBVffBYxu3jw6h6W4EuEfyI",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "page": {
+                    "type": "integer"
+                  },
+                  "size": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "id",
+                  "page",
+                  "size"
+                ],
+                "x-apifox-orders": [
+                  "id",
+                  "page",
+                  "size"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "identity": 1,
+                "page": 1,
+                "size": 10
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-59053033-run"
+      }
+    },
+    "/user/folder/list": {
+      "post": {
+        "summary": "用户文件夹列表",
+        "x-apifox-folder": "个人存储池",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "个人存储池"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQzMTg2ODYsImlhdCI6MTY3NDI4NTM1MywidXNlcklkZW50aXR5IjoiMTIzNDU2In0.0G12bH_8Jo3ukFdpHcm8RBVffBYxu3jw6h6W4EuEfyI",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "x-apifox-orders": [
+                  "id"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "identity": "123456userrepository"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-59053765-run"
+      }
+    },
+    "/user/file/name/update": {
+      "post": {
+        "summary": "用户文件名称修改",
+        "x-apifox-folder": "个人存储池",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "个人存储池"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQzMTg2ODYsImlhdCI6MTY3NDI4NTM1MywidXNlcklkZW50aXR5IjoiMTIzNDU2In0.0G12bH_8Jo3ukFdpHcm8RBVffBYxu3jw6h6W4EuEfyI",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name"
+                ],
+                "x-apifox-orders": [
+                  "id",
+                  "name"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "identity": "123456userrepository",
+                "name": "updateName"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-59053777-run"
+      }
+    },
+    "/user/folder/create": {
+      "post": {
+        "summary": "用户文件夹创建",
+        "x-apifox-folder": "个人存储池",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "个人存储池"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQzMTg2ODYsImlhdCI6MTY3NDI4NTM1MywidXNlcklkZW50aXR5IjoiMTIzNDU2In0.0G12bH_8Jo3ukFdpHcm8RBVffBYxu3jw6h6W4EuEfyI",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "parentId": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "parentId",
+                  "name"
+                ],
+                "x-apifox-orders": [
+                  "parentId",
+                  "name"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "parentId": "1",
+                "name": "folder1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-59053779-run"
+      }
+    },
+    "/user/file/delete": {
+      "post": {
+        "summary": "用户文件删除",
+        "x-apifox-folder": "个人存储池",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "个人存储池"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQzMTg2ODYsImlhdCI6MTY3NDI4NTM1MywidXNlcklkZW50aXR5IjoiMTIzNDU2In0.0G12bH_8Jo3ukFdpHcm8RBVffBYxu3jw6h6W4EuEfyI",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "x-apifox-orders": [
+                  "id"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "identity": "0da41bf6-49ec-4b3a-802c-bb704055c528"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-59053793-run"
+      }
+    },
+    "/user/file/move": {
+      "post": {
+        "summary": "用户文件移动",
+        "x-apifox-folder": "个人存储池",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "个人存储池"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQzMTg2ODYsImlhdCI6MTY3NDI4NTM1MywidXNlcklkZW50aXR5IjoiMTIzNDU2In0.0G12bH_8Jo3ukFdpHcm8RBVffBYxu3jw6h6W4EuEfyI",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "parentId": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "id",
+                  "parentId"
+                ],
+                "x-apifox-orders": [
+                  "id",
+                  "parentId"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "identity": "0da41bf6-49ec-4b3a-802c-bb704055c521",
+                "parentId": "2"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-59053848-run"
+      }
+    },
+    "/share/basic/create": {
+      "post": {
+        "summary": "创建分享记录",
+        "x-apifox-folder": "分享",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "分享"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQzMTg2ODYsImlhdCI6MTY3NDI4NTM1MywidXNlcklkZW50aXR5IjoiMTIzNDU2In0.0G12bH_8Jo3ukFdpHcm8RBVffBYxu3jw6h6W4EuEfyI",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userRepositoryId": {
+                    "type": "integer"
+                  },
+                  "expiredTime": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "userRepositoryId",
+                  "expiredTime"
+                ],
+                "x-apifox-orders": [
+                  "userRepositoryId",
+                  "expiredTime"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "userRepositoryIdentity": "123456userrepository",
+                "expiredTime": "13333"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-59053866-run"
+      }
+    },
+    "/share/basic/save": {
+      "post": {
+        "summary": "资源保存",
+        "x-apifox-folder": "分享",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "分享"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQzMTg2ODYsImlhdCI6MTY3NDI4NTM1MywidXNlcklkZW50aXR5IjoiMTIzNDU2In0.0G12bH_8Jo3ukFdpHcm8RBVffBYxu3jw6h6W4EuEfyI",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "repositoryId": {
+                    "type": "integer"
+                  },
+                  "parentId": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "repositoryId",
+                  "parentId"
+                ],
+                "x-apifox-orders": [
+                  "repositoryId",
+                  "parentId"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "repositoryIdentity": "123456repository",
+                "parentId": "1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-59053887-run"
+      }
+    },
+    "/refresh/authorization": {
+      "post": {
+        "summary": "刷新Authorization",
+        "x-apifox-folder": "用户",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "用户"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQzMTg2ODYsImlhdCI6MTY3NDI4NTM1MywidXNlcklkZW50aXR5IjoiMTIzNDU2In0.0G12bH_8Jo3ukFdpHcm8RBVffBYxu3jw6h6W4EuEfyI",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "x-apifox-ignore-properties": [],
+                "x-apifox-orders": []
+              },
+              "example": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-59053924-run"
+      }
+    },
+    "/file/chunk/upload": {
+      "post": {
+        "summary": "文件分片上传",
+        "x-apifox-folder": "中心存储池",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "中心存储池"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQzMDQyMTEsImlhdCI6MTY3NDI3MDg3OCwidXNlcklkZW50aXR5IjoiMTIzNDU2In0.3VrAupM_eYleOzSvbjvl45d66cyOmOn5jC2-03osoe",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "example": "file://E:\\idea_project\\goProject\\cloud-disk\\test\\img\\headPhoto.jpg",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "file"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/2202919/apis/api-59067592-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

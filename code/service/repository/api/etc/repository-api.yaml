@@ -1,0 +1,31 @@
+Name: repository-api
+Host: 0.0.0.0
+Port: 8001
+MaxBytes: 8388608
+Timeout: 10000
+Mysql:
+  DataSource: root:123456@tcp(mysql:3306)/butane-netdisk?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+Redis:
+  Host: redis:6379
+  Type: node
+  Pass:
+CacheRedis:
+  - Host: redis:6379
+    Pass:
+Auth:
+  AccessSecret: b2cfcd59-86d4-413f-8e62-c15c7be7badf
+  AccessExpire: 33333
+UserRpc:
+  Etcd:
+    Hosts:
+      - etcd:2379
+    Key: user.rpc
+Prometheus:
+  Host: 0.0.0.0
+  Port: 9081
+  Path: /metrics
+Telemetry:
+  Name: repository.api
+  Endpoint: http://jaeger:14268/api/traces
+  Sampler: 1.0
+  Batcher: jaeger

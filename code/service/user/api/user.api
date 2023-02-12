@@ -1,0 +1,95 @@
+syntax = "v1"
+
+info(
+	title: ""
+	desc: ""
+	author: "butane"
+	email: "1127080666@qq.com"
+)
+
+type LoginRequest {
+	Name     string `json:"name"`
+	Password string `json:"password"`
+}
+
+type LoginResponse {
+	AccesssToken string `json:"accesssToken"`
+	AccessExpire int64  `json:"accessExpire"`
+	RefreshAfter int64  `json:"refreshAfter"`
+}
+
+type DetailRequest {
+	Id int64 `json:"id"`
+}
+
+type DetailResponse {
+	Name  string `json:"name"`
+	Email string `json:"email"`
+}
+
+type CodeSendRequest {
+	Email string `json:"email"`
+}
+
+type CodeSendResponse {
+}
+
+type RegisterRequest {
+	//用户名
+	Name string `json:"name"`
+	//密码
+	Password string `json:"password"`
+	//邮箱
+	Email string `json:"email"`
+	//验证码
+	Code string `json:"code"`
+}
+
+type RegisterResponse {
+}
+
+type RefreshAuthRequest {
+}
+
+type RefreshAuthResponse {
+	AccesssToken string `json:"accesssToken"`
+	AccessExpire int64  `json:"accessExpire"`
+	RefreshAfter int64  `json:"refreshAfter"`
+}
+
+service user-api {
+	@doc(
+		summary: "用户登录"
+	)
+	@handler UserLogin
+	post /user/login (LoginRequest) returns (LoginResponse)
+	
+	@doc(
+		summary: "用户详情"
+	)
+	@handler UserDetail
+	post /user/detail (DetailRequest) returns (DetailResponse)
+	
+	@doc(
+		summary: "验证码发送"
+	)
+	@handler CodeSend
+	post /code/send (CodeSendRequest) returns (CodeSendResponse)
+	
+	@doc(
+		summary: "用户注册"
+	)
+	@handler UserRegister
+	post /user/register (RegisterRequest) returns (RegisterResponse)
+}
+
+@server(
+	jwt : Auth
+)
+service user-api {
+	@doc(
+		summary: "刷新Authorization"
+	)
+	@handler RefreshAuthorization
+	post /refresh/authorization (RefreshAuthRequest) returns (RefreshAuthResponse)
+}

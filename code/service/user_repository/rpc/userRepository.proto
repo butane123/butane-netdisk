@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package userRepository;
+
+option go_package = "./userRepository";
+
+message RepositoryIdReq{
+  int64 repositoryId = 1;
+}
+
+message UserRepositoryNameReply{
+  string repositoryName = 1;
+}
+
+message FindRepositoryIdReq{
+  int64 id = 1;
+}
+
+message FindRepositoryIdReply{
+  int64 repositoryId = 1;
+}
+
+message CreateByShareReq{
+  int64 userId = 1;
+  int64 parentId = 2;
+  int64 repositoryId = 3;
+  string name = 4;
+}
+
+message CreateByShareReply{
+  int64 id = 1;
+}
+
+service userRepository {
+  rpc getUserRepositoryNameByRepositoryId(RepositoryIdReq) returns(UserRepositoryNameReply);
+  rpc findRepositoryIdById(FindRepositoryIdReq) returns(FindRepositoryIdReply);
+  rpc createByShare(CreateByShareReq) returns(CreateByShareReply);
+}
