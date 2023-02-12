@@ -42,4 +42,7 @@ test/
 **/test/
 
 DBdata/
+
 dockerEnv/
+
+**/dockerEnv/
